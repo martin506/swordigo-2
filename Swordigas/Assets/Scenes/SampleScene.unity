@@ -2629,6 +2629,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3236442120053030912, guid: 8d27e534b18b2394b8ad38583afd6cc9, type: 3}
+      propertyPath: m_Size.x
+      value: 0.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236442120053030912, guid: 8d27e534b18b2394b8ad38583afd6cc9, type: 3}
+      propertyPath: m_Size.y
+      value: 0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236442120053030912, guid: 8d27e534b18b2394b8ad38583afd6cc9, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236442120053030912, guid: 8d27e534b18b2394b8ad38583afd6cc9, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3236442120053030916, guid: 8d27e534b18b2394b8ad38583afd6cc9, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2636,6 +2652,14 @@ PrefabInstance:
     - target: {fileID: 3236442120053030917, guid: 8d27e534b18b2394b8ad38583afd6cc9, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236442120053030917, guid: 8d27e534b18b2394b8ad38583afd6cc9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3236442120053030917, guid: 8d27e534b18b2394b8ad38583afd6cc9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3236442120053030917, guid: 8d27e534b18b2394b8ad38583afd6cc9, type: 3}
       propertyPath: m_LocalPosition.x
