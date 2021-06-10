@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     {
         // PLay an attack animation
         animator.SetTrigger("Attack");
-
+        animator.SetBool("isJumping", false);
         // Detect enemies in range of the attack
         // Do damage to enemies
     }
