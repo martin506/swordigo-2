@@ -4558,7 +4558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
-  jumpHeight: 15
+  jumpHeight: 12
   jumpCD: 1
   rigidBody2D: {fileID: 1644638803}
 --- !u!1 &2130498833

@@ -27,6 +27,19 @@ public class Player : MonoBehaviour
     {
         Running();
         Jump();
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Attack();
+        }
+    }
+
+    private void Attack()
+    {
+        // PLay an attack animation
+        animator.SetTrigger("Attack");
+
+        // Detect enemies in range of the attack
+        // Do damage to enemies
     }
 
     private void Jump()
@@ -35,9 +48,15 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                animator.SetBool("isJumping", true);
                 rigidBody2D.velocity += new Vector2(0f, jumpHeight);
                 jumpTime = Time.time;
             }
+        }
+
+        if (rigidBody2D.velocity.y < 1 && rigidBody2D.velocity.y > -1)
+        {
+            animator.SetBool("isJumping", false);
         }
     }
 
