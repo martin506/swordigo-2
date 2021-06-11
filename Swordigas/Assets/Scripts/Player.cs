@@ -10,6 +10,11 @@ public class Player : MonoBehaviour
 
 
 
+    [Header("Attack")]
+    public Transform attackPoint;
+    [SerializeField] float attackRange = 0.5f;
+    public LayerMask enemyLayers;
+
     [Header("Cached objectas")]
     public Rigidbody2D rigidBody2D;
     private Animator animator;
@@ -24,7 +29,33 @@ public class Player : MonoBehaviour
     void Update()
     {
         Running();
-	}
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Attack();
+        }
+    }
+
+    private void Attack()
+    {
+        // PLay an attack animation
+        animator.SetTrigger("Attack");
+        animator.SetBool("isJumping", false);
+
+        // Detect enemies in range of the attack
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+        // Do damage to enemies
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            Debug.Log("we hit: " + enemy.name);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
     private void Running()
     {
         if (Input.GetAxis("Horizontal") > 0)
