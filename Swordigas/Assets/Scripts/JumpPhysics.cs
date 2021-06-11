@@ -20,11 +20,9 @@ public class JumpPhysics : MonoBehaviour
 		if (rigidBody2D.velocity.y < 0)
 		{
 			rigidBody2D.velocity += Vector2.up * Physics2D.gravity.y * (highJumpFall - 1) * Time.deltaTime;
-			Debug.Log("Aukstas");
 		}
 		else if (rigidBody2D.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
 		{
-			Debug.Log("Trumpas");
 			rigidBody2D.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpFall - 1) * Time.deltaTime;
 		}
 	}

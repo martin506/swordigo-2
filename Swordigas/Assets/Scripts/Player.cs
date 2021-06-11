@@ -41,8 +41,8 @@ public class Player : MonoBehaviour
         animator.SetTrigger("Attack");
         animator.SetBool("isJumping", false);
 
-        // Detect enemies in range of the attack
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+		// Detect enemies in range of the attack
+		Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
         // Do damage to enemies
         foreach (Collider2D enemy in hitEnemies)

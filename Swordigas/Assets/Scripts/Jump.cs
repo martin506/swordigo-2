@@ -6,13 +6,33 @@ public class Jump : MonoBehaviour
 {
 	[Header("Jumping")]
 	[Range(1, 10)]
-	public float jumpVelocity;
+	public float jumpVelocity = 10f;
+	public Animator animator;
+	public float jumpCount = 2;
+	Rigidbody2D rigidBody2D;
 
+	private void Start()
+	{
+		rigidBody2D = GetComponent<Rigidbody2D>();
+	}
 	void Update()
     {
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (jumpCount > 0)
 		{
-			GetComponent<Rigidbody2D>().velocity = Vector2.up * jumpVelocity;
+			if (Input.GetKeyDown(KeyCode.Space))
+			{
+				animator.SetBool("isJumping", true);
+				GetComponent<Rigidbody2D>().velocity = Vector2.up * jumpVelocity;
+				jumpCount--;
+			}
+			if (rigidBody2D.velocity.y < 1 && rigidBody2D.velocity.y > -1)
+			{
+				animator.SetBool("isJumping", false);
+			}
 		}
+	}
+	public void ResetJumpCount()
+	{
+		jumpCount = 2;
 	}
 }
