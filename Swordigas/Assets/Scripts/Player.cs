@@ -6,41 +6,26 @@ public class Player : MonoBehaviour
 {
     [Header("Moving")]
     public float speed;
-    private Vector3 scaleChange = new Vector3(8f, 0f, 0f);
+	private Vector3 scaleChange = new Vector3(8f, 0f, 0f);
 
-    [Header("Jumping")]
-    [SerializeField] float jumpHeight = 3f;
-    [SerializeField] float jumpCD = 1f;
-    private float jumpTime;
+
 
     [Header("Cached objectas")]
     public Rigidbody2D rigidBody2D;
     private Animator animator;
 
-    void Start()
+
+	void Start()
     {
-        jumpTime = Time.time;
-        animator = GetComponent<Animator>();
+		animator = GetComponent<Animator>();
+		rigidBody2D = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
         Running();
-        Jump();
-    }
-
-    private void Jump()
-    {
-        if (Time.time > jumpTime + jumpCD)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                rigidBody2D.velocity += new Vector2(0f, jumpHeight);
-                jumpTime = Time.time;
-            }
-        }
-    }
-
+		
+	}
     private void Running()
     {
         if (Input.GetAxis("Horizontal") > 0)
