@@ -24,7 +24,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         Running();
-		
 	}
     private void Running()
     {
