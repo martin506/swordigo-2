@@ -5,8 +5,8 @@ using UnityEngine;
 public class JumpPhysics : MonoBehaviour
 {
 	public float highJumpFall = 2.5f;
-	public float lowJumpFall = 2f;
-
+	public float lowJumpFall = 2;
+	public Animator animator;
 	Rigidbody2D rigidBody2D;
 
 	void Start()
@@ -24,6 +24,7 @@ public class JumpPhysics : MonoBehaviour
 		else if (rigidBody2D.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
 		{
 			rigidBody2D.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpFall - 1) * Time.deltaTime;
+
 		}
 	}
 }

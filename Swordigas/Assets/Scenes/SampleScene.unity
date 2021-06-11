@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 56225256}
   m_Layer: 0
   m_Name: Foreground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4628,6 +4628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highJumpFall: 2.5
   lowJumpFall: 2
+  animator: {fileID: 0}
 --- !u!1 &2057868376
 GameObject:
   m_ObjectHideFlags: 0
@@ -4672,6 +4673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a08efbb99df19e540a7edaf94f0d7436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jump: {fileID: 0}
 --- !u!61 &2057868379
 BoxCollider2D:
   m_ObjectHideFlags: 0

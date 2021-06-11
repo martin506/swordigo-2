@@ -8,7 +8,7 @@ public class Jump : MonoBehaviour
 	[Range(1, 10)]
 	public float jumpVelocity = 10f;
 	public Animator animator;
-	public float jumpCount = 2;
+	public float jumpCount = 2f;
 	Rigidbody2D rigidBody2D;
 
 	private void Start()
