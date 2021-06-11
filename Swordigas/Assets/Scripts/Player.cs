@@ -13,6 +13,11 @@ public class Player : MonoBehaviour
     [SerializeField] float jumpCD = 1f;
     private float jumpTime;
 
+    [Header("Attack")]
+    public Transform attackPoint;
+    [SerializeField] float attackRange = 0.5f;
+    public LayerMask enemyLayers;
+
     [Header("Cached objectas")]
     public Rigidbody2D rigidBody2D;
     private Animator animator;
@@ -38,8 +43,20 @@ public class Player : MonoBehaviour
         // PLay an attack animation
         animator.SetTrigger("Attack");
         animator.SetBool("isJumping", false);
+
         // Detect enemies in range of the attack
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
         // Do damage to enemies
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            Debug.Log("we hit: " + enemy.name);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
     private void Jump()
