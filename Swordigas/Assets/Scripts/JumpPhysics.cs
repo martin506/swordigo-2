@@ -30,7 +30,7 @@ public class JumpPhysics : MonoBehaviour
 	}
 	public void Falling()
 	{
-		if (rigidBody2D.velocity.y < 0)
+		if (rigidBody2D.velocity.y < 1)
 		{
 			animator.SetBool("isJumping", false);
 			animator.SetBool("isFalling", true);

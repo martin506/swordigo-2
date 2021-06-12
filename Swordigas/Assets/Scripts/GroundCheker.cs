@@ -6,11 +6,11 @@ public class GroundCheker : MonoBehaviour
 {
 	// Start is called before the first frame update
 	public Jump jump;
-    void Start()
+	void Start()
     {
 		jump = FindObjectOfType<Jump>();
-    }
-	private void OnTriggerEnter2D(Collider2D collision)
+	}
+	private void OnTriggerStay2D(Collider2D collision)
 	{
 		if(collision.tag == "Ground")
 		{

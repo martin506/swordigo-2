@@ -25,10 +25,6 @@ public class Jump : MonoBehaviour
 				GetComponent<Rigidbody2D>().velocity = Vector2.up * jumpVelocity;
 				jumpCount--;
 			}
-			if (rigidBody2D.velocity.y < 2 && rigidBody2D.velocity.y > -1)
-			{
-				animator.SetBool("isFalling", false);
-			}
 		}
 	}
 	public void ResetJumpCount()
