@@ -34,7 +34,6 @@ public class JumpPhysics : MonoBehaviour
 		{
 			animator.SetBool("isJumping", false);
 			animator.SetBool("isFalling", true);
-			Debug.Log("Krenta");
 		}
 	}
 }
