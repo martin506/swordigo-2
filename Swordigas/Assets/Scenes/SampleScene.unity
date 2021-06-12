@@ -4628,7 +4628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highJumpFall: 2.5
   lowJumpFall: 2
-  animator: {fileID: 0}
+  animator: {fileID: 1644638806}
 --- !u!1 &2057868376
 GameObject:
   m_ObjectHideFlags: 0

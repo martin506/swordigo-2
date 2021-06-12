@@ -27,7 +27,7 @@ public class Jump : MonoBehaviour
 			}
 			if (rigidBody2D.velocity.y < 1 && rigidBody2D.velocity.y > -1)
 			{
-				animator.SetBool("isJumping", false);
+				animator.SetBool("isFalling", false);
 			}
 		}
 	}

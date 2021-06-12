@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine; 
 
 public class JumpPhysics : MonoBehaviour
 {
@@ -17,6 +17,7 @@ public class JumpPhysics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		Falling();
 		if (rigidBody2D.velocity.y < 0)
 		{
 			rigidBody2D.velocity += Vector2.up * Physics2D.gravity.y * (highJumpFall - 1) * Time.deltaTime;
@@ -25,6 +26,15 @@ public class JumpPhysics : MonoBehaviour
 		{
 			rigidBody2D.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpFall - 1) * Time.deltaTime;
 
+		}
+	}
+	public void Falling()
+	{
+		if (rigidBody2D.velocity.y < 0)
+		{
+			animator.SetBool("isJumping", false);
+			animator.SetBool("isFalling", true);
+			Debug.Log("Krenta");
 		}
 	}
 }
