@@ -6,9 +6,8 @@ public class Player : MonoBehaviour
 {
     [Header("Moving")]
     public float speed;
+    private float staticSpeed;
 	private Vector3 scaleChange = new Vector3(8f, 0f, 0f);
-
-
 
     [Header("Attack")]
     public Transform attackPoint;
@@ -24,6 +23,7 @@ public class Player : MonoBehaviour
     {
 		animator = GetComponent<Animator>();
 		rigidBody2D = GetComponent<Rigidbody2D>();
+        staticSpeed = speed;
     }
 
     void Update()
@@ -33,6 +33,11 @@ public class Player : MonoBehaviour
         {
             Attack();
         }
+    }
+
+    public void SlowDown()
+    {
+        StartCoroutine("ReduceSpeed");
     }
 
     private void Attack()
@@ -51,8 +56,19 @@ public class Player : MonoBehaviour
         }
     }
 
+    private IEnumerator ReduceSpeed()
+    {
+        float oldSpeed = staticSpeed;
+        speed /= 3;
+        yield return new WaitForSeconds(1.1f);
+        speed = oldSpeed;
+    }
+
     private void OnDrawGizmosSelected()
     {
+        if (attackPoint == null)
+            return;
+
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
