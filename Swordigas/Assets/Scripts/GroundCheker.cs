@@ -7,6 +7,7 @@ public class GroundCheker : MonoBehaviour
 	// Start is called before the first frame update
 	public Jump jump;
     public Player player;
+	public Animator animator;
 
 	void Start()
     {
@@ -25,6 +26,10 @@ public class GroundCheker : MonoBehaviour
                 player.SlowDown();
             }
         }
+	}
+	private void OnTriggerExit2D(Collider2D collision)
+	{
+		animator.SetBool("isJumping", true);
 	}
 
 }
