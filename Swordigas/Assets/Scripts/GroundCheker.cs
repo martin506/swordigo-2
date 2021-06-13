@@ -15,19 +15,27 @@ public class GroundCheker : MonoBehaviour
         player = FindObjectOfType<Player>();
 
     }
-	private void OnTriggerStay2D(Collider2D collision)
+	private void OnTriggerEnter2D(Collider2D collision)
 	{
         if (collision.tag == "Ground")
         {
             jump.ResetJumpCount();
+        }
+	}
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Ground")
+        {
             if (Input.GetKeyDown(KeyCode.X))
             {
                 Debug.Log("slowing Down");
                 player.SlowDown();
             }
         }
-	}
-	private void OnTriggerExit2D(Collider2D collision)
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
 	{
 		animator.SetBool("isJumping", true);
 	}
