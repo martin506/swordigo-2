@@ -33,11 +33,17 @@ public class GroundCheker : MonoBehaviour
                 player.SlowDown();
             }
         }
+<<<<<<< Updated upstream
     }
 
     private void OnTriggerExit2D(Collider2D collision)
+=======
+		animator.SetBool("isFalling", false);
+	}
+	private void OnTriggerExit2D(Collider2D collision)
+>>>>>>> Stashed changes
 	{
-		animator.SetBool("isJumping", true);
+		animator.SetBool("isFalling", true); 
 	}
 
 }
