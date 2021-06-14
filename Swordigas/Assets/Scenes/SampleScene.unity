@@ -4666,6 +4666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1825827274}
   maxHealth: 100
+  rigidBody: {fileID: 0}
 --- !u!50 &1825827270
 Rigidbody2D:
   serializedVersion: 4

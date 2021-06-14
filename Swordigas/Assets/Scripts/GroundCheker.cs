@@ -32,7 +32,8 @@ public class GroundCheker : MonoBehaviour
         if (collision.tag == "Ground")
         {
             jump.ResetJumpCount();
-        }
+			animator.SetBool("isFalling", false);
+		}
 	}
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -49,8 +50,10 @@ public class GroundCheker : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
 	{
+
         player.ChangePlayerSpeed(playerSpeed);
-		animator.SetBool("isJumping", true);
+		animator.SetBool("isFalling", true);
+
 	}
 
 }

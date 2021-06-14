@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+
     public Animator animator;
 
     public int maxHealth = 100;
@@ -15,6 +16,10 @@ public class Enemy : MonoBehaviour
     {
         currentHealth = maxHealth;        
     }
+
+	public Rigidbody2D rigidBody;
+    // Start is called before the first frame update
+
 
     public void takeDamage(int damage)
     {
