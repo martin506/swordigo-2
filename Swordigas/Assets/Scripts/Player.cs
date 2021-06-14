@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public LayerMask enemyLayers;
     public bool isAttacking = false;
     public int attackDamage = 40;
-    [SerializeField] float attackCD = 1;
+    [SerializeField] float attackCD = 0.6f;
     private float nextAttackTime = 0;
 
     [Header("Cached objectas")]
@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator DetectAndDamage()
     {
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.1f);
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
     private IEnumerator AttackTime()
     {
         isAttacking = true;
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.5f);
         isAttacking = false;
     }
 
