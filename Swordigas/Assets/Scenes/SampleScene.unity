@@ -4817,11 +4817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a08efbb99df19e540a7edaf94f0d7436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< Updated upstream
   jump: {fileID: 1644638807}
-=======
-  jump: {fileID: 0}
->>>>>>> Stashed changes
   player: {fileID: 1644638808}
   animator: {fileID: 1644638806}
 --- !u!61 &2057868379
