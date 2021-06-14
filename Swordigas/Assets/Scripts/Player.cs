@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     public LayerMask enemyLayers;
     public bool isAttacking = false;
     public int attackDamage = 40;
+    [SerializeField] float attackCD = 1;
+    private float nextAttackTime = 0;
 
     [Header("Cached objectas")]
     public Rigidbody2D rigidBody2D;
@@ -31,9 +33,13 @@ public class Player : MonoBehaviour
     void Update()
     {
         Running();
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Time.time > nextAttackTime)
         {
-            Attack();
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                Attack();
+                nextAttackTime = Time.time + attackCD;
+            }
         }
     }
 
@@ -60,10 +66,15 @@ public class Player : MonoBehaviour
         animator.SetTrigger("Attack");
         animator.SetBool("isJumping", false);
 
-		// Detect enemies in range of the attack
-		Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        StartCoroutine("DetectAndDamage");
+    }
 
-        // Do damage to enemies
+    private IEnumerator DetectAndDamage()
+    {
+        yield return new WaitForSeconds(0.4f);
+
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
         foreach (Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<Enemy>().takeDamage(attackDamage);
