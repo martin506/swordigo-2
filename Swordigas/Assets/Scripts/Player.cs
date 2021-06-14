@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
     private IEnumerator AttackTime()
     {
         isAttacking = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
         isAttacking = false;
     }
 

@@ -9,17 +9,42 @@ public class Enemy : MonoBehaviour
 
     public int maxHealth = 100;
     private int currentHealth;
+    [SerializeField] float jumpX;
+    [SerializeField] float jumpY;
 
+    private bool lifeState = false;
 
-    // Start is called before the first frame update
+    public Rigidbody2D rigidBody;
+
     void Start()
     {
-        currentHealth = maxHealth;        
+        currentHealth = maxHealth;
+        StartCoroutine("Move");
     }
 
-	public Rigidbody2D rigidBody;
-    // Start is called before the first frame update
 
+
+    private IEnumerator Move()
+    {
+        float side = 1;
+        for (int i = 0; i < 2; i++)
+        {
+            if (lifeState == false)
+            {
+                rigidBody.velocity += new Vector2(jumpX * side, jumpY);
+                yield return new WaitForSeconds(1f);
+                if (i == 1)
+                {
+                    i = 0;
+                    side *= -1;
+                }
+            }
+            else
+            {
+                i = 2;
+            }
+        }
+    }
 
     public void takeDamage(int damage)
     {
@@ -36,6 +61,7 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        lifeState = true;
         Debug.Log("He is dead");
 
         // play death animation
