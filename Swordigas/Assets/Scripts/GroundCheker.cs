@@ -6,38 +6,44 @@ public class GroundCheker : MonoBehaviour
 {
 	// Start is called before the first frame update
 	public Jump jump;
-	public Player player;
+    public Player player;
 	public Animator animator;
 
 	void Start()
-	{
+    {
 		jump = FindObjectOfType<Jump>();
-		player = FindObjectOfType<Player>();
+        player = FindObjectOfType<Player>();
 
-	}
+    }
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.tag == "Ground")
-		{
-			jump.ResetJumpCount();
-		}
+        if (collision.tag == "Ground")
+        {
+            jump.ResetJumpCount();
+        }
 	}
 
-	private void OnTriggerStay2D(Collider2D collision)
-	{
-		if (collision.tag == "Ground")
-		{
-			if (Input.GetKeyDown(KeyCode.X))
-			{
-				Debug.Log("slowing Down");
-				player.SlowDown();
-			}
-		}
-	}
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Ground")
+        {
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                Debug.Log("slowing Down");
+                player.SlowDown();
+            }
+        }
+<<<<<<< Updated upstream
+    }
 
-	private void OnTriggerExit2D(Collider2D collision)
-	{ 
+    private void OnTriggerExit2D(Collider2D collision)
+=======
 		animator.SetBool("isFalling", false);
+	}
+	private void OnTriggerExit2D(Collider2D collision)
+>>>>>>> Stashed changes
+	{
+		animator.SetBool("isFalling", true); 
 	}
 
 }
