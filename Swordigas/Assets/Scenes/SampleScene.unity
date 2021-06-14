@@ -4590,8 +4590,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a105aa0bbc0b09948873192f30fab8f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   jumpVelocity: 10
   animator: {fileID: 1644638806}
   jumpCount: 0
@@ -4605,8 +4605,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 40751687ad173f74f82ecc8f3b015e42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   speed: 8
   attackPoint: {fileID: 232764571}
   attackRange: 0.5
@@ -4627,8 +4627,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7e06d253115fa248b28b020c927306d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   highJumpFall: 2.5
   lowJumpFall: 2
   animator: {fileID: 1644638806}
@@ -4663,10 +4663,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c5c3e970468e0540ba0899f219e2d24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   animator: {fileID: 1825827274}
-  maxHealth: 10000
+  maxHealth: 100
+  rigidBody: {fileID: 0}
 --- !u!50 &1825827270
 Rigidbody2D:
   serializedVersion: 4
@@ -4794,7 +4795,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: 
+  m_WarningMessage:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -4840,8 +4841,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a08efbb99df19e540a7edaf94f0d7436, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   jump: {fileID: 1644638807}
   player: {fileID: 1644638808}
   animator: {fileID: 1644638806}
@@ -4940,7 +4941,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3236442120053030913, guid: 8d27e534b18b2394b8ad38583afd6cc9, type: 3}
       propertyPath: m_Material
-      value: 
+      value:
       objectReference: {fileID: 6200000, guid: d3abb27c5c12f8149b78747e7727044c, type: 2}
     - target: {fileID: 3236442120053030913, guid: 8d27e534b18b2394b8ad38583afd6cc9, type: 3}
       propertyPath: m_GravityScale
