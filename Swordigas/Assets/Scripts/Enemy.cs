@@ -1,16 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 public class Enemy : MonoBehaviour
 {
 
     public Animator animator;
+    public Transform playerPosition;
 
     public int maxHealth = 100;
     private int currentHealth;
     [SerializeField] float jumpX;
     [SerializeField] float jumpY;
+    bool canYouJump = true;
+    bool lookingRight = true;
+    [SerializeField] float jumpDelay = 0.5f;
+    private float nextJumpTime;
+    private bool startJumping;
 
     private bool lifeState = false;
 
@@ -19,32 +27,57 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        StartCoroutine("Move");
+        nextJumpTime = 0;
     }
 
-
-
-    private IEnumerator Move()
+    private void Update()
     {
-        float side = 1;
-        for (int i = 0; i < 2; i++)
+        CheckPlayerPosition();
+        if (startJumping == true)
         {
-            if (lifeState == false)
+            Move();
+        }
+        
+    }
+
+    private void CheckPlayerPosition()
+    {
+        if (Math.Abs(playerPosition.position.x + gameObject.transform.position.x * -1) < 10)
+        {
+            startJumping = true;
+        }
+        if (playerPosition.position.x >= gameObject.transform.position.x)
+        {
+            gameObject.transform.localScale = new Vector3(1, 1, 1);
+            lookingRight = true;
+        }
+        else
+        {
+            gameObject.transform.localScale = new Vector3(-1, 1, 1);
+            lookingRight = false;
+        }
+    }
+
+    private void Move()
+    {
+        if (nextJumpTime <= Time.time)
+        {
+            if (canYouJump == true)
             {
-                rigidBody.velocity += new Vector2(jumpX * side, jumpY);
-                yield return new WaitForSeconds(1f);
-                if (i == 1)
+                canYouJump = false;
+                if (lookingRight == true)
                 {
-                    i = 0;
-                    side *= -1;
+                    rigidBody.velocity += new Vector2(jumpX * 1, jumpY);
                 }
-            }
-            else
-            {
-                i = 2;
+                else
+                {
+                    rigidBody.velocity += new Vector2(jumpX * -1, jumpY);
+                }
             }
         }
     }
+
+    // rigidBody.velocity += new Vector2(jumpX* side, jumpY);
 
     public void takeDamage(int damage)
     {
@@ -68,8 +101,39 @@ public class Enemy : MonoBehaviour
         animator.SetBool("isDead", true);
 
         // disable enemy
-        GetComponent<Collider2D>().enabled = false;
-        GetComponent<Rigidbody2D>().gravityScale = 0;
-        this.enabled = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            if (canYouJump == false)
+            {
+                nextJumpTime = Time.time + jumpDelay;
+            }
+            canYouJump = true;
+            if (lifeState == true)
+            {
+                GetComponent<Collider2D>().enabled = false;
+                GetComponent<Rigidbody2D>().gravityScale = 0;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                this.enabled = false;
+            }
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            canYouJump = true;
+            if (lifeState == true)
+            {
+                GetComponent<Collider2D>().enabled = false;
+                GetComponent<Rigidbody2D>().gravityScale = 0;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                this.enabled = false;
+            }
+        }
     }
 }
