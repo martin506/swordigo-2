@@ -9,13 +9,25 @@ public class GroundCheker : MonoBehaviour
     public Player player;
 	public Animator animator;
 
+    private float playerSpeed;
+    private float reducedPlayerSpeed;
+    private bool attacks;
+
 	void Start()
     {
 		jump = FindObjectOfType<Jump>();
         player = FindObjectOfType<Player>();
 
+        playerSpeed = player.GetPlayerSpeed();
+        reducedPlayerSpeed = playerSpeed / 3;
     }
-	private void OnTriggerEnter2D(Collider2D collision)
+
+    private void Update()
+    {
+        attacks = player.GetIsAttacking();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
 	{
         if (collision.tag == "Ground")
         {
@@ -25,18 +37,19 @@ public class GroundCheker : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Ground")
+        if (attacks == true)
         {
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                Debug.Log("slowing Down");
-                player.SlowDown();
-            }
+            player.ChangePlayerSpeed(reducedPlayerSpeed);
+        }
+        else
+        {
+            player.ChangePlayerSpeed(playerSpeed);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
 	{
+        player.ChangePlayerSpeed(playerSpeed);
 		animator.SetBool("isJumping", true);
 	}
 

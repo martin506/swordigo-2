@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public Transform attackPoint;
     [SerializeField] float attackRange = 0.5f;
     public LayerMask enemyLayers;
+    public bool isAttacking = false;
 
     [Header("Cached objectas")]
     public Rigidbody2D rigidBody2D;
@@ -35,13 +36,25 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void SlowDown()
+    public bool GetIsAttacking()
     {
-        StartCoroutine("ReduceSpeed");
+        return isAttacking;
+    }
+
+    public float GetPlayerSpeed()
+    {
+        return speed;
+    }
+
+    public void ChangePlayerSpeed(float playerSpeed)
+    {
+        speed = playerSpeed;
     }
 
     private void Attack()
     {
+        StartCoroutine("AttackTime");
+
         // PLay an attack animation
         animator.SetTrigger("Attack");
         animator.SetBool("isJumping", false);
@@ -56,12 +69,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    private IEnumerator ReduceSpeed()
+    private IEnumerator AttackTime()
     {
-        float oldSpeed = staticSpeed;
-        speed /= 3;
-        yield return new WaitForSeconds(1.1f);
-        speed = oldSpeed;
+        isAttacking = true;
+        yield return new WaitForSeconds(0.8f);
+        isAttacking = false;
     }
 
     private void OnDrawGizmosSelected()
