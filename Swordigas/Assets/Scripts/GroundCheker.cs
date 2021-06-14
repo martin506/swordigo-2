@@ -19,7 +19,7 @@ public class GroundCheker : MonoBehaviour
         player = FindObjectOfType<Player>();
 
         playerSpeed = player.GetPlayerSpeed();
-        reducedPlayerSpeed = playerSpeed / 3;
+        reducedPlayerSpeed = playerSpeed / 5;
     }
 
     private void Update()

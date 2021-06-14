@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField] float attackRange = 0.5f;
     public LayerMask enemyLayers;
     public bool isAttacking = false;
+    public int attackDamage = 40;
 
     [Header("Cached objectas")]
     public Rigidbody2D rigidBody2D;
@@ -65,7 +66,7 @@ public class Player : MonoBehaviour
         // Do damage to enemies
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("we hit: " + enemy.name);
+            enemy.GetComponent<Enemy>().takeDamage(attackDamage);
         }
     }
 
