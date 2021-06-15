@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float jumpDelay = 0.5f;
     private float nextJumpTime;
     private bool startJumping;
+    private int jumpingState = 0;
 
     private bool lifeState = false;
 
@@ -28,6 +29,11 @@ public class Enemy : MonoBehaviour
     {
         currentHealth = maxHealth;
         nextJumpTime = 0;
+    }
+
+    public void resetJumpingState()
+    {
+        jumpingState = 2;
     }
 
     private void Update()
@@ -65,13 +71,40 @@ public class Enemy : MonoBehaviour
             if (canYouJump == true)
             {
                 canYouJump = false;
-                if (lookingRight == true)
+                if (jumpingState == 0)
                 {
-                    rigidBody.velocity += new Vector2(jumpX * 1, jumpY);
+                    if (lookingRight == true)
+                    {
+                        rigidBody.velocity += new Vector2(jumpX * 1, jumpY);
+                    }
+                    else
+                    {
+                        rigidBody.velocity += new Vector2(jumpX * -1, jumpY);
+                    }
                 }
-                else
+                if (jumpingState == 1)
                 {
-                    rigidBody.velocity += new Vector2(jumpX * -1, jumpY);
+                    if (lookingRight == true)
+                    {
+                        rigidBody.velocity += new Vector2(4f, 10f);
+                    }
+                    else
+                    {
+                        rigidBody.velocity += new Vector2(-4f, 10f);
+                    }
+                    jumpingState = 0;
+                }
+                if (jumpingState == 2)
+                {
+                    if (lookingRight == true)
+                    {
+                        rigidBody.velocity += new Vector2(-1.5f, 1.5f);
+                    }
+                    else
+                    {
+                        rigidBody.velocity += new Vector2(1.5f, 1.5f);
+                    }
+                    jumpingState = 1;
                 }
             }
         }

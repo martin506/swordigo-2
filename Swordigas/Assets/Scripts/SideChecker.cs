@@ -4,21 +4,13 @@ using UnityEngine;
 
 public class SideChecker : MonoBehaviour
 {
-    public bool isNearWall = false;
+    public Enemy enemy;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Ground")
         {
-            isNearWall = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Ground")
-        {
-            isNearWall = false;
+            enemy.resetJumpingState();
         }
     }
 }
