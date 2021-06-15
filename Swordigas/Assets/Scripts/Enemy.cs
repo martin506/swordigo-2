@@ -77,18 +77,18 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // rigidBody.velocity += new Vector2(jumpX* side, jumpY);
-
     public void takeDamage(int damage)
     {
-        currentHealth -= damage;
-
-        // play hurt animation
-        animator.SetTrigger("hurt");
-  
-        if (currentHealth <= 0)
+        if (lifeState == false)
         {
-            Die();
+            currentHealth -= damage;
+
+            animator.SetTrigger("hurt");
+
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
         }
     }
 
@@ -97,21 +97,13 @@ public class Enemy : MonoBehaviour
         lifeState = true;
         Debug.Log("He is dead");
 
-        // play death animation
         animator.SetBool("isDead", true);
-
-        // disable enemy
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
-            if (canYouJump == false)
-            {
-                nextJumpTime = Time.time + jumpDelay;
-            }
-            canYouJump = true;
             if (lifeState == true)
             {
                 GetComponent<Collider2D>().enabled = false;
@@ -126,7 +118,6 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
-            canYouJump = true;
             if (lifeState == true)
             {
                 GetComponent<Collider2D>().enabled = false;
@@ -134,6 +125,19 @@ public class Enemy : MonoBehaviour
                 GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
                 this.enabled = false;
             }
+        }
+    }
+
+    public void CheckGround()
+    {
+        canYouJump = true;
+    }
+
+    public void DelayJump()
+    {
+        if (canYouJump == false)
+        {
+            nextJumpTime = Time.time + jumpDelay;
         }
     }
 }
