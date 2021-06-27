@@ -27,10 +27,12 @@ public class Player : MonoBehaviour
     [SerializeField] int maxHitPoints = 100;
     int currentHeath;
     bool lifeState = false;
+    public HealthBar healthBar;
 
 	void Start()
     {
         currentHeath = maxHitPoints;
+        healthBar.setMaxHealth(maxHitPoints);
 
 		animator = GetComponent<Animator>();
 		rigidBody2D = GetComponent<Rigidbody2D>();
@@ -135,6 +137,8 @@ public class Player : MonoBehaviour
     public void playerTakeDamage(int damage)
     {
         currentHeath -= damage;
+
+        healthBar.setHealth(currentHeath);
 
         // play hurt animation
         animator.SetTrigger("isHurt");
