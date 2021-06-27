@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     [Header("Moving")]
     public float speed;
     private float staticSpeed;
-	private Vector3 scaleChange = new Vector3(8f, 0f, 0f);
 
     [Header("Attack")]
     public Transform attackPoint;
@@ -21,10 +20,18 @@ public class Player : MonoBehaviour
     [Header("Cached objectas")]
     public Rigidbody2D rigidBody2D;
     private Animator animator;
+    public Jump jump;
+    public JumpPhysics jumpPhysics;
 
+    [Header("Hit Points")]
+    [SerializeField] int maxHitPoints = 100;
+    int currentHeath;
+    bool lifeState = false;
 
 	void Start()
     {
+        currentHeath = maxHitPoints;
+
 		animator = GetComponent<Animator>();
 		rigidBody2D = GetComponent<Rigidbody2D>();
         staticSpeed = speed;
@@ -122,6 +129,46 @@ public class Player : MonoBehaviour
         else
         {
             animator.SetBool("isMoving", false);
+        }
+    }
+
+    public void playerTakeDamage(int damage)
+    {
+        currentHeath -= damage;
+
+        // play hurt animation
+        animator.SetTrigger("isHurt");
+
+        if (currentHeath <= 0)
+        {
+            // play die animation
+            animator.SetBool("isDead", true);
+
+            // disable the player
+            StartCoroutine("StopDeathAnimation");
+        }
+    }
+
+    private IEnumerator StopDeathAnimation()
+    {
+        lifeState = true;
+        yield return new WaitForSeconds(1f);
+        animator.speed = 0;
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            if (lifeState == true)
+            {
+                GetComponent<Collider2D>().enabled = false;
+                GetComponent<Rigidbody2D>().gravityScale = 0;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                jump.enabled = false;
+                jumpPhysics.enabled = false;
+                this.enabled = false;
+            }
         }
     }
 }

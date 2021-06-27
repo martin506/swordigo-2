@@ -23,12 +23,22 @@ public class Enemy : MonoBehaviour
 
     private bool lifeState = false;
 
+    public float attackCD = 0.5f;
+    private float nextAttackTime;
+
+
+    [Header("Deal Damage")]
+    private Player player;
+    [SerializeField] int slimeDamage = 20;
+
     public Rigidbody2D rigidBody;
 
     void Start()
     {
         currentHealth = maxHealth;
         nextJumpTime = 0;
+
+        player = FindObjectOfType<Player>();
     }
 
     public void resetJumpingState()
@@ -52,15 +62,23 @@ public class Enemy : MonoBehaviour
         {
             startJumping = true;
         }
-        if (playerPosition.position.x >= gameObject.transform.position.x)
+        if (lookingRight == false)
         {
-            gameObject.transform.localScale = new Vector3(1, 1, 1);
-            lookingRight = true;
+            if (playerPosition.position.x >= gameObject.transform.position.x)
+            {
+                gameObject.transform.localScale = new Vector3(1, 1, 1);
+                lookingRight = true;
+                jumpingState = 0;
+            }
         }
-        else
+        if (lookingRight == true)
         {
-            gameObject.transform.localScale = new Vector3(-1, 1, 1);
-            lookingRight = false;
+            if (playerPosition.position.x <= gameObject.transform.position.x)
+            {
+                gameObject.transform.localScale = new Vector3(-1, 1, 1);
+                lookingRight = false;
+                jumpingState = 0;
+            }
         }
     }
 
@@ -144,6 +162,11 @@ public class Enemy : MonoBehaviour
                 GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
                 this.enabled = false;
             }
+        }
+
+        if (collision.gameObject.tag == "Player")
+        {
+            player.playerTakeDamage(slimeDamage);
         }
     }
 

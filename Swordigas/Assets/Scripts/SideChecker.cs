@@ -8,7 +8,7 @@ public class SideChecker : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Ground")
+        if (collision.tag == "Ground" || collision.tag == "Slime")
         {
             enemy.resetJumpingState();
         }

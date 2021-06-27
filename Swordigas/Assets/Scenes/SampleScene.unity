@@ -4535,17 +4535,6 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!114 &57771355 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4926841074870117218, guid: 75f3c8d10e981544ea7024b0bf96b388, type: 3}
-  m_PrefabInstance: {fileID: 4926841075479087783}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c5c3e970468e0540ba0899f219e2d24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &232764570
 GameObject:
   m_ObjectHideFlags: 0
@@ -4597,7 +4586,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4926841074870117219, guid: 75f3c8d10e981544ea7024b0bf96b388, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4926841074870117230, guid: 75f3c8d10e981544ea7024b0bf96b388, type: 3}
       propertyPath: m_RootOrder
@@ -4666,7 +4655,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4926841074870117219, guid: 75f3c8d10e981544ea7024b0bf96b388, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4926841074870117230, guid: 75f3c8d10e981544ea7024b0bf96b388, type: 3}
       propertyPath: m_RootOrder
@@ -4766,6 +4755,9 @@ MonoBehaviour:
   attackDamage: 40
   attackCD: 0.4
   rigidBody2D: {fileID: 1644638803}
+  jump: {fileID: 1644638807}
+  jumpPhysics: {fileID: 1644638809}
+  maxHitPoints: 100
 --- !u!114 &1644638809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4957,6 +4949,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3236442120053030916, guid: 8d27e534b18b2394b8ad38583afd6cc9, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 3236442120053030917, guid: 8d27e534b18b2394b8ad38583afd6cc9, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -5075,29 +5071,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4926841075388666473, guid: 75f3c8d10e981544ea7024b0bf96b388, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4926841075388666486, guid: 75f3c8d10e981544ea7024b0bf96b388, type: 3}
-      propertyPath: m_Size.x
-      value: 0.07326889
-      objectReference: {fileID: 0}
-    - target: {fileID: 4926841075388666486, guid: 75f3c8d10e981544ea7024b0bf96b388, type: 3}
-      propertyPath: m_Size.y
-      value: 0.5408218
-      objectReference: {fileID: 0}
-    - target: {fileID: 4926841075388666486, guid: 75f3c8d10e981544ea7024b0bf96b388, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.06499863
-      objectReference: {fileID: 0}
-    - target: {fileID: 4926841075388666486, guid: 75f3c8d10e981544ea7024b0bf96b388, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.13112986
-      objectReference: {fileID: 0}
-    - target: {fileID: 4926841075388666487, guid: 75f3c8d10e981544ea7024b0bf96b388, type: 3}
-      propertyPath: enemy
-      value: 
-      objectReference: {fileID: 57771355}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75f3c8d10e981544ea7024b0bf96b388, type: 3}
