@@ -8950,9 +8950,6 @@ MonoBehaviour:
   highJumpFall: 2.5
   lowJumpFall: 2
   animator: {fileID: 1644638806}
-<<<<<<< Updated upstream
---- !u!1 &1787889111
-=======
 --- !u!114 &1644638810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8966,33 +8963,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1644638806}
---- !u!1 &1825827268
->>>>>>> Stashed changes
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1787889115}
-  - component: {fileID: 1787889114}
-  - component: {fileID: 1787889113}
-  - component: {fileID: 1787889112}
-  m_Layer: 5
-  m_Name: Game Canvas
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
+  boxCollider: {fileID: 0}
 --- !u!114 &1787889112
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1787889111}
+  m_GameObject: {fileID: 1825827268}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
@@ -9009,7 +8987,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1787889111}
+  m_GameObject: {fileID: 1825827268}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
@@ -9032,7 +9010,7 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1787889111}
+  m_GameObject: {fileID: 1825827268}
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
@@ -9053,7 +9031,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1787889111}
+  m_GameObject: {fileID: 1825827268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
@@ -9068,6 +9046,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1825827268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1787889115}
+  - component: {fileID: 1787889114}
+  - component: {fileID: 1787889113}
+  - component: {fileID: 1787889112}
+  m_Layer: 5
+  m_Name: Game Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &2057868376
 GameObject:
   m_ObjectHideFlags: 0
@@ -9262,11 +9259,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3236442120053030917, guid: 8d27e534b18b2394b8ad38583afd6cc9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.16
+      value: -26.05
       objectReference: {fileID: 0}
     - target: {fileID: 3236442120053030917, guid: 8d27e534b18b2394b8ad38583afd6cc9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.45
+      value: -2.83
       objectReference: {fileID: 0}
     - target: {fileID: 3236442120053030917, guid: 8d27e534b18b2394b8ad38583afd6cc9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9321,6 +9318,10 @@ PrefabInstance:
     - target: {fileID: 4926841074870117219, guid: 75f3c8d10e981544ea7024b0bf96b388, type: 3}
       propertyPath: m_Name
       value: Slime
+      objectReference: {fileID: 0}
+    - target: {fileID: 4926841074870117219, guid: 75f3c8d10e981544ea7024b0bf96b388, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4926841074870117230, guid: 75f3c8d10e981544ea7024b0bf96b388, type: 3}
       propertyPath: m_RootOrder
