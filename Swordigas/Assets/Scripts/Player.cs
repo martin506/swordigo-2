@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     int currentHeath;
     bool lifeState = false;
     public HealthBar healthBar;
+    public GameObject bloodFX;
 
 	void Start()
     {
@@ -143,6 +144,9 @@ public class Player : MonoBehaviour
 
         // play hurt animation
         animator.SetTrigger("isHurt");
+
+        // play particles
+        Instantiate(bloodFX, transform.position, Quaternion.identity);
 
         if (currentHeath <= 0)
         {

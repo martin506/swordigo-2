@@ -31,6 +31,9 @@ public class Enemy : MonoBehaviour
     private Player player;
     [SerializeField] int slimeDamage = 20;
 
+    [Header("Take Damage")]
+    public GameObject bloodFX;
+
     public Rigidbody2D rigidBody;
 
     void Start()
@@ -135,6 +138,9 @@ public class Enemy : MonoBehaviour
             currentHealth -= damage;
 
             animator.SetTrigger("hurt");
+
+            // particles btiches
+            Instantiate(bloodFX, transform.position, Quaternion.identity);
 
             if (currentHealth <= 0)
             {

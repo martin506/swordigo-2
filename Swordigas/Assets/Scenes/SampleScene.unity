@@ -5078,6 +5078,7 @@ MonoBehaviour:
   jumpPhysics: {fileID: 1644638809}
   maxHitPoints: 100
   healthBar: {fileID: 1557916972}
+  bloodFX: {fileID: 5847296591297406954, guid: d6873a8434c6b9a4f9dd276b45ca8ea4, type: 3}
 --- !u!114 &1644638809
 MonoBehaviour:
   m_ObjectHideFlags: 0
