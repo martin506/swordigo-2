@@ -5,6 +5,9 @@ using UnityEngine;
 public class TextCode : MonoBehaviour
 {
     public Transform playerTransform;
+    public Transform questGiver;
+
+    public SpriteRenderer spriteRenderer;
 
     float basicYPos;
     float yPos;
@@ -17,6 +20,10 @@ public class TextCode : MonoBehaviour
 
     bool moveUp = true;
 
+    [SerializeField] float WorkingWidth;
+
+    bool move = false;
+
     private void Start()
     {
         basicYPos = transform.position.y;
@@ -27,6 +34,18 @@ public class TextCode : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        CheckPlayerPos();
+
+        if (move == true)
+        {
+            MoveUpAndDown();
+        }
+
+
+    }
+
+    private void MoveUpAndDown()
     {
         if (transform.position.y >= yPosMax)
         {
@@ -47,5 +66,27 @@ public class TextCode : MonoBehaviour
         }
 
         transform.position = new Vector2(transform.position.x, yPos);
+    }
+
+    private void CheckPlayerPos()
+    {
+        float playerXPos = playerTransform.transform.position.x;
+        float questGiverXPos = questGiver.transform.position.x;
+
+        if (Mathf.Abs(Mathf.Abs(playerXPos) - Mathf.Abs(questGiverXPos)) < WorkingWidth)
+        {
+            move = true;
+            spriteRenderer.enabled = true;
+        }
+        else
+        {
+            move = false;
+            spriteRenderer.enabled = false;
+        }
+    }
+
+    public bool getBoolMove()
+    {
+        return move;
     }
 }
