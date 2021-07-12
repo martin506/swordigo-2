@@ -11,7 +11,8 @@ public class GroundCheker : MonoBehaviour
 
     private float playerSpeed;
     private float reducedPlayerSpeed;
-    private bool attacks;
+	private float increasedPlayerSpeed;
+	private bool attacks;
 
 	void Start()
     {
@@ -19,8 +20,11 @@ public class GroundCheker : MonoBehaviour
         player = FindObjectOfType<Player>();
 
         playerSpeed = player.GetPlayerSpeed();
+
         reducedPlayerSpeed = playerSpeed / 5;
-    }
+		increasedPlayerSpeed = playerSpeed * 2;
+
+	}
 
     private void Update()
     {
@@ -42,7 +46,7 @@ public class GroundCheker : MonoBehaviour
         {
             player.ChangePlayerSpeed(reducedPlayerSpeed);
         }
-        else
+		else if(!Input.GetKey(KeyCode.C)) 
         {
             player.ChangePlayerSpeed(playerSpeed);
         }

@@ -34,7 +34,6 @@ public class Player : MonoBehaviour
     {
         currentHeath = maxHitPoints;
         healthBar.setMaxHealth(maxHitPoints);
-        healthBar.setHealth(maxHitPoints);
 
 		animator = GetComponent<Animator>();
 		rigidBody2D = GetComponent<Rigidbody2D>();
