@@ -46,7 +46,7 @@ public class GroundCheker : MonoBehaviour
         {
             player.ChangePlayerSpeed(reducedPlayerSpeed);
         }
-		else if(!Input.GetKey(KeyCode.C)) 
+		else if(!Input.GetKeyDown(KeyCode.C)) 
         {
             player.ChangePlayerSpeed(playerSpeed);
         }
