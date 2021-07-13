@@ -247,6 +247,9 @@ public class Player : MonoBehaviour
         maxHitPoints = data.maxHitPoints;
         currentHeath = data.currentHitPoints;
 
+        currentHeath = maxHitPoints;
+        healthBar.setHealth(currentHeath);
+
         money = data.money;
         experience = data.experience;
 
