@@ -9599,6 +9599,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1557916972}
+    - target: {fileID: 1644638808, guid: 8d27e534b18b2394b8ad38583afd6cc9, type: 3}
+      propertyPath: attackRange
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1644638810, guid: 8d27e534b18b2394b8ad38583afd6cc9, type: 3}
       propertyPath: dirtFX
       value: 
