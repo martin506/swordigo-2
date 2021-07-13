@@ -221,9 +221,9 @@ MonoBehaviour:
   animator: {fileID: 4926841074870117229}
   playerPosition: {fileID: 0}
   maxHealth: 100
-  jumpX: 2.5
-  jumpY: 2.5
-  jumpDelay: 0.5
+  jumpX: 3
+  jumpY: 3
+  jumpDelay: 1.2
   attackCD: 0.5
   slimeDamage: 20
   bloodFX: {fileID: 3666865495178537593, guid: e4d854b0ea3634a4281c9b0f55faef25, type: 3}
