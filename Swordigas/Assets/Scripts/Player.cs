@@ -30,6 +30,15 @@ public class Player : MonoBehaviour
     public HealthBar healthBar;
     public GameObject bloodFX;
 
+    [Header("Quests")]
+    public Quest quest;
+
+    [Header("Money")]
+    public int money = 0;
+
+    [Header("Experience")]
+    public int experience = 0;
+
 	void Start()
     {
         currentHeath = maxHitPoints;
@@ -80,23 +89,19 @@ public class Player : MonoBehaviour
         StartCoroutine("DetectAndDamage");
     }
 
-    private IEnumerator DetectAndDamage()
+    public void KillEnemy(string tag)
     {
-        yield return new WaitForSeconds(0.1f);
-
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-
-        foreach (Collider2D enemy in hitEnemies)
+        if (quest.isActive)
         {
-            enemy.GetComponent<Enemy>().takeDamage(attackDamage);
-        }
-    }
+            quest.goal.EnemyKilled(tag);
+            if (quest.goal.isReached())
+            {
+                money += quest.moneyReward;
+                experience += quest.xpRevard;
 
-    private IEnumerator AttackTime()
-    {
-        isAttacking = true;
-        yield return new WaitForSeconds(0.4f);
-        isAttacking = false;
+                quest.Complete();
+            }
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -158,6 +163,8 @@ public class Player : MonoBehaviour
         }
     }
 
+
+    // IEnumerators
     private IEnumerator StopDeathAnimation()
     {
         lifeState = true;
@@ -165,6 +172,27 @@ public class Player : MonoBehaviour
         animator.speed = 0;
     }
 
+    private IEnumerator DetectAndDamage()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<Enemy>().takeDamage(attackDamage);
+        }
+    }
+
+    private IEnumerator AttackTime()
+    {
+        isAttacking = true;
+        yield return new WaitForSeconds(0.4f);
+        isAttacking = false;
+    }
+
+
+    // collision functions
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
@@ -179,5 +207,17 @@ public class Player : MonoBehaviour
                 this.enabled = false;
             }
         }
+    }
+
+
+    // get functions
+    public int GetMoney()
+    {
+        return money;
+    }
+
+    public int GetExperience()
+    {
+        return experience;
     }
 }

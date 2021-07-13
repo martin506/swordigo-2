@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class QuestWindow : MonoBehaviour
 {
+    public Quest quest;
+    public Player player;
+
     public GameObject questWindowSprite;
     public Transform playerPos;
     public Transform duckPos;
@@ -14,6 +17,11 @@ public class QuestWindow : MonoBehaviour
     [SerializeField] float ShowingWidth;
 
     TextCode textCode;
+
+    public Text titleText;
+    public Text descriptionText;
+    public Text goldText;
+    public Text experienceText;
 
     private void Start()
     {
@@ -28,8 +36,9 @@ public class QuestWindow : MonoBehaviour
             {
                 if (!isAlreadyActive)
                 {
-                    questWindowSprite.SetActive(true);
                     isAlreadyActive = true;
+                    OpenQuestWindow();
+
                 }
                 else
                 {
@@ -45,4 +54,18 @@ public class QuestWindow : MonoBehaviour
         }
     }
 
+    private void OpenQuestWindow()
+    {
+        questWindowSprite.SetActive(true);
+        titleText.text = quest.title;
+        descriptionText.text = quest.description;
+        goldText.text = quest.moneyReward.ToString();
+        experienceText.text = quest.xpRevard.ToString();
+    }
+
+    public void AcceptQuest() {
+        quest.isActive = true;
+        questWindowSprite.SetActive(false);
+        player.quest = quest;
+    }
 }

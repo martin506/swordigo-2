@@ -145,6 +145,9 @@ public class Enemy : MonoBehaviour
             if (currentHealth <= 0)
             {
                 Die();
+
+                // goal check
+                player.KillEnemy(gameObject.tag);
             }
         }
     }
