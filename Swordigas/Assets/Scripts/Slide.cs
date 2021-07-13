@@ -9,6 +9,9 @@ public class Slide : MonoBehaviour
 	private float playerSpeed;
 	Player player;
 
+    public GameObject dirtFX;
+    public Transform dirtTransform;
+
 	
 	public BoxCollider2D boxCollider;
 	// Size scale
@@ -46,9 +49,15 @@ public class Slide : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.C))
 		{
-			animator.SetTrigger("Sliding");
+            animator.SetTrigger("Sliding");
 		}
 	}
+
+    public void instantiateDirtParticles()
+    {
+        Instantiate(dirtFX, dirtTransform.position, dirtTransform.rotation);
+    }
+
 	public void BoxColliderShrink()
 	{
 		boxCollider.size = new Vector2(xSize, ySize);
