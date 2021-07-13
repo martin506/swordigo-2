@@ -168,6 +168,8 @@ public class Player : MonoBehaviour
     private IEnumerator StopDeathAnimation()
     {
         lifeState = true;
+        jump.enabled = false;
+        jumpPhysics.enabled = false;
         yield return new WaitForSeconds(1f);
         animator.speed = 0;
     }
@@ -202,8 +204,6 @@ public class Player : MonoBehaviour
                 GetComponent<Collider2D>().enabled = false;
                 GetComponent<Rigidbody2D>().gravityScale = 0;
                 GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-                jump.enabled = false;
-                jumpPhysics.enabled = false;
                 this.enabled = false;
             }
         }
