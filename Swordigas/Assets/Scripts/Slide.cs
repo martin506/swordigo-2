@@ -11,7 +11,6 @@ public class Slide : MonoBehaviour
 
     public GameObject dirtFX;
     public Transform dirtTransform;
-
 	
 	public BoxCollider2D boxCollider;
 	// Size scale

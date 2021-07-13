@@ -24,8 +24,8 @@ public class Player : MonoBehaviour
     public JumpPhysics jumpPhysics;
 
     [Header("Hit Points")]
-    [SerializeField] int maxHitPoints = 100;
-    int currentHeath;
+    public int maxHitPoints = 100;
+    public int currentHeath;
     bool lifeState = false;
     public HealthBar healthBar;
     public GameObject bloodFX;
@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
         Running();
         if (Time.time > nextAttackTime)
         {
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 Attack();
                 nextAttackTime = Time.time + attackCD;
@@ -230,5 +230,44 @@ public class Player : MonoBehaviour
     public int GetExperience()
     {
         return experience;
+    }
+
+    // data functions
+    public void SavePlayer()
+    {
+        SaveSystem.SavePlayer(this);
+    }
+
+    public void LoadPlayer()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        attackDamage = data.attackDamage;
+
+        maxHitPoints = data.maxHitPoints;
+        currentHeath = data.currentHitPoints;
+
+        money = data.money;
+        experience = data.experience;
+
+        Vector3 playerPos;
+        playerPos.x = data.position[0];
+        playerPos.y = data.position[1];
+        playerPos.z = data.position[2];
+
+        transform.position = playerPos;
+
+        quest.isActive = data.questIsActive;
+        quest.title = data.questTitle;
+        quest.description = data.questDescription;
+        quest.moneyReward = data.questMoneyReward;
+        quest.xpRevard = data.questXPRevard;
+
+        quest.goal.goalType = (GoalType)System.Enum.Parse(  typeof(GoalType), data.questGoalType );
+        // YourEnumType parsed_enum = (YourEnumType)System.Enum.Parse( typeof(YourEnumType), your_string );
+        quest.goal.requiredAmount = data.questRequiredAmount;
+        quest.goal.currentAmount = data.questCurrentAmount;
+        quest.goal.objectTag = data.questObjectTag;
+
     }
 }
