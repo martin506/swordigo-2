@@ -23,6 +23,9 @@ public class QuestWindow : MonoBehaviour
     public Text goldText;
     public Text experienceText;
 
+    public AudioClip acceptSound;
+    public AudioClip openSound;
+
     private void Start()
     {
         textCode = FindObjectOfType<TextCode>();
@@ -39,6 +42,8 @@ public class QuestWindow : MonoBehaviour
                     isAlreadyActive = true;
                     OpenQuestWindow();
 
+                    // play open sound
+                    AudioSource.PlayClipAtPoint(openSound, duckPos.position);
                 }
                 else
                 {
@@ -64,6 +69,9 @@ public class QuestWindow : MonoBehaviour
     }
 
     public void AcceptQuest() {
+        // play accept sound
+        AudioSource.PlayClipAtPoint(acceptSound, duckPos.position);
+
         quest.isActive = true;
         questWindowSprite.SetActive(false);
         player.quest = quest;

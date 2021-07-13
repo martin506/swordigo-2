@@ -39,6 +39,11 @@ public class Player : MonoBehaviour
     [Header("Experience")]
     public int experience = 0;
 
+    [Header("Sound")]
+    public AudioSource audioSource;
+    public AudioClip slashSound;
+    public AudioClip hurtSound;
+
 	void Start()
     {
         currentHeath = maxHitPoints;
@@ -85,6 +90,9 @@ public class Player : MonoBehaviour
         // PLay an attack animation
         animator.SetTrigger("Attack");
         animator.SetBool("isJumping", false);
+
+        // play attack sound
+        AudioSource.PlayClipAtPoint(slashSound, transform.position);
 
         StartCoroutine("DetectAndDamage");
     }
@@ -152,6 +160,9 @@ public class Player : MonoBehaviour
 
         // play particles
         Instantiate(bloodFX, transform.position, Quaternion.identity);
+
+        // play hurt sound
+        AudioSource.PlayClipAtPoint(hurtSound, transform.position);
 
         if (currentHeath <= 0)
         {

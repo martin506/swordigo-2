@@ -107,11 +107,11 @@ public class Enemy : MonoBehaviour
                 {
                     if (lookingRight == true)
                     {
-                        rigidBody.velocity += new Vector2(4f, 10f);
+                        rigidBody.velocity += new Vector2(4f, 7f);
                     }
                     else
                     {
-                        rigidBody.velocity += new Vector2(-4f, 10f);
+                        rigidBody.velocity += new Vector2(-4f, 7f);
                     }
                     jumpingState = 0;
                 }
