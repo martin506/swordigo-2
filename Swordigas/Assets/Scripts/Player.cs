@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     private Animator animator;
     public Jump jump;
     public JumpPhysics jumpPhysics;
+    public DeathScreen deathScreen;
 
     [Header("Hit Points")]
     public int maxHitPoints = 100;
@@ -169,6 +170,9 @@ public class Player : MonoBehaviour
             // play die animation
             animator.SetBool("isDead", true);
 
+            // pop up the death screen
+            deathScreen.ItIsTimeToShowDeathScreen();
+
             // disable the player
             StartCoroutine("StopDeathAnimation");
         }
@@ -233,6 +237,18 @@ public class Player : MonoBehaviour
     }
 
     // data functions
+    public void BringBackToLife()
+    {
+        animator.SetBool("isDead", false);
+        this.enabled = true;
+        lifeState = false;
+        jump.enabled = true;
+        jumpPhysics.enabled = true;
+        GetComponent<Collider2D>().enabled = true;
+        GetComponent<Rigidbody2D>().gravityScale = 2;
+        animator.speed = 1;
+    }
+
     public void SavePlayer()
     {
         SaveSystem.SavePlayer(this);
