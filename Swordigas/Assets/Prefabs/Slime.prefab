@@ -221,13 +221,16 @@ MonoBehaviour:
   animator: {fileID: 4926841074870117229}
   playerPosition: {fileID: 0}
   maxHealth: 100
+  currentHealth: 0
   jumpX: 3
   jumpY: 3
   jumpDelay: 1.2
+  startJumping: 0
   attackCD: 0.5
   slimeDamage: 20
   bloodFX: {fileID: 3666865495178537593, guid: e4d854b0ea3634a4281c9b0f55faef25, type: 3}
   rigidBody: {fileID: 4926841074870117217}
+  id: 0
 --- !u!95 &4926841074870117229
 Animator:
   serializedVersion: 3

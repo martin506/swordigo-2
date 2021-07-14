@@ -11,17 +11,17 @@ public class Enemy : MonoBehaviour
     public Transform playerPosition;
 
     public int maxHealth = 100;
-    private int currentHealth;
+    public int currentHealth;
     [SerializeField] float jumpX;
     [SerializeField] float jumpY;
     bool canYouJump = true;
     bool lookingRight = true;
     [SerializeField] float jumpDelay = 0.5f;
     private float nextJumpTime;
-    private bool startJumping;
+    public bool startJumping;
     private int jumpingState = 0;
 
-    private bool lifeState = false;
+    public bool lifeState = false;
 
     public float attackCD = 0.5f;
     private float nextAttackTime;
@@ -36,10 +36,18 @@ public class Enemy : MonoBehaviour
 
     public Rigidbody2D rigidBody;
 
+    [Header("Save Data")]
+    public int id;
+    public DataSaverAndLoader saver;
+
     void Start()
     {
+        id = GetInstanceID();
         currentHealth = maxHealth;
         nextJumpTime = 0;
+        Debug.Log(id);
+
+        saver = FindObjectOfType<DataSaverAndLoader>();
 
         player = FindObjectOfType<Player>();
     }
@@ -51,10 +59,31 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        CheckPlayerPosition();
-        if (startJumping == true)
+        if (saver.GetSaveEnemyData())
         {
-            Move();
+            SaveEnemy();
+        }
+
+        if (saver.GetLoadEnemyData())
+        {
+            LoadEnemy();
+            if (lifeState == false)
+            {
+                BringEnemyBackToLife();
+            }
+            if (lifeState == true)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        if (!lifeState)
+        {
+            CheckPlayerPosition();
+            if (startJumping == true)
+            {
+                Move();
+            }
         }
         
     }
@@ -155,7 +184,6 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         lifeState = true;
-        Debug.Log("He is dead");
 
         animator.SetBool("isDead", true);
     }
@@ -169,7 +197,6 @@ public class Enemy : MonoBehaviour
                 GetComponent<Collider2D>().enabled = false;
                 GetComponent<Rigidbody2D>().gravityScale = 0;
                 GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-                this.enabled = false;
             }
         }
 
@@ -188,7 +215,6 @@ public class Enemy : MonoBehaviour
                 GetComponent<Collider2D>().enabled = false;
                 GetComponent<Rigidbody2D>().gravityScale = 0;
                 GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-                this.enabled = false;
             }
         }
     }
@@ -204,5 +230,39 @@ public class Enemy : MonoBehaviour
         {
             nextJumpTime = Time.time + jumpDelay;
         }
+    }
+
+    public void BringEnemyBackToLife()
+    {
+        animator.SetBool("isDead", false);
+
+        GetComponent<Collider2D>().enabled = true;
+        GetComponent<Rigidbody2D>().gravityScale = 1;
+        this.enabled = true;
+    }
+
+    // Save and Load system 
+    public void SaveEnemy()
+    {
+        SaveSystem.SaveEnemy(this);
+    }
+
+    public void LoadEnemy()
+    {
+        EnemyData data = SaveSystem.LoadEnemy(this);
+
+        id = data.id;
+        currentHealth = data.currentHitPoints;
+
+        Vector3 enemyPos;
+        enemyPos.x = data.position[0];
+        enemyPos.y = data.position[1];
+        enemyPos.z = data.position[2];
+
+        transform.position = enemyPos;
+
+        startJumping = data.startJumping;
+
+        lifeState = data.lifeState;
     }
 }
