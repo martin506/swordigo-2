@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class EnemyData
 {
-    public int id;
+    //public int id;
 
     public float[] position;
 
@@ -16,7 +16,7 @@ public class EnemyData
 
     public EnemyData(Enemy enemy)
     {
-        id = enemy.id;
+        //id = enemy.id;
 
         position = new float[3];
         position[0] = enemy.transform.position.x;

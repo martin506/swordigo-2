@@ -226,11 +226,13 @@ MonoBehaviour:
   jumpY: 3
   jumpDelay: 1.2
   startJumping: 0
+  lifeState: 0
   attackCD: 0.5
   slimeDamage: 20
   bloodFX: {fileID: 3666865495178537593, guid: e4d854b0ea3634a4281c9b0f55faef25, type: 3}
   rigidBody: {fileID: 4926841074870117217}
   id: 0
+  saver: {fileID: 2455318297252536706, guid: 79cbdcf7f02ca5842af85d4d27539643, type: 3}
 --- !u!95 &4926841074870117229
 Animator:
   serializedVersion: 3

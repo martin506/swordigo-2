@@ -37,19 +37,21 @@ public class Enemy : MonoBehaviour
     public Rigidbody2D rigidBody;
 
     [Header("Save Data")]
-    public int id;
+    //public int id;
     public DataSaverAndLoader saver;
 
     void Start()
-    {
-        id = GetInstanceID();
+    {      
+
+        //id = GetInstanceID();
         currentHealth = maxHealth;
         nextJumpTime = 0;
-        Debug.Log(id);
 
         saver = FindObjectOfType<DataSaverAndLoader>();
 
         player = FindObjectOfType<Player>();
+
+        playerPosition = player.transform;
     }
 
     public void resetJumpingState()
@@ -251,7 +253,7 @@ public class Enemy : MonoBehaviour
     {
         EnemyData data = SaveSystem.LoadEnemy(this);
 
-        id = data.id;
+        //id = data.id;
         currentHealth = data.currentHitPoints;
 
         Vector3 enemyPos;

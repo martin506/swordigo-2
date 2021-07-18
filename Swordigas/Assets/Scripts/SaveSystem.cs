@@ -11,7 +11,7 @@ public static class SaveSystem
 
         EnemyData data = new EnemyData(enemy);
 
-        string path = Application.persistentDataPath + "/enemy" + data.id + ".mm";
+        string path = Application.persistentDataPath + "/enemy" + enemy.name + ".mm";
         FileStream stream = new FileStream(path, FileMode.Create);
 
         formatter.Serialize(stream, data);
@@ -21,7 +21,7 @@ public static class SaveSystem
 
     public static EnemyData LoadEnemy(Enemy enemy)
     {
-        string path = Application.persistentDataPath + "/enemy" + enemy.id + ".mm";
+        string path = Application.persistentDataPath + "/enemy" + enemy.name + ".mm";
 
         if (File.Exists(path))
         {
